@@ -97,14 +97,15 @@ const login = async (req, res, next) => {
   }
 };
 
-const checktoken = (req, res) => {
+const checktoken = (req, res, next) => {
   try {
     const userData = req.user;
+    console.log(userData);
     res.status(200).json({
       status: "Success",
       data: userData,
     });
-  } catch (error) {
+  } catch (err) {
     next(new ApiError(err.message, 500));
   }
 };
