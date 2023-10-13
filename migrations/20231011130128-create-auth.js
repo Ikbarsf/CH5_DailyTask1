@@ -1,30 +1,22 @@
 "use strict";
-
-const { INTEGER } = require("sequelize");
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Products", {
+    await queryInterface.createTable("Auths", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      email: {
         type: Sequelize.STRING,
       },
-      price: {
-        type: Sequelize.FLOAT,
+      password: {
+        type: Sequelize.STRING,
       },
-      stock: {
-        type: Sequelize.INTEGER,
-      },
-      imageUrl: {
-        type: Sequelize.TEXT,
-        defaultValue:
-          "https://tse2.mm.bing.net/th?id=OIP.U2iQ7wNK6ZzTW_traW_-PQHaHa&pid=Api&P=0&h=180",
+      confirmPassword: {
+        type: Sequelize.STRING,
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -41,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Products");
+    await queryInterface.dropTable("Auths");
   },
 };

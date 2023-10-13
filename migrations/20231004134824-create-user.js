@@ -1,4 +1,7 @@
 "use strict";
+
+const { ENUM } = require("sequelize");
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -17,6 +20,9 @@ module.exports = {
       },
       address: {
         type: Sequelize.STRING,
+      },
+      role: {
+        type: Sequelize.ENUM(["Owner", "Staff"]),
       },
       createdAt: {
         allowNull: false,
