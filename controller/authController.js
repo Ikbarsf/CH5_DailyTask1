@@ -97,7 +97,20 @@ const login = async (req, res, next) => {
   }
 };
 
+const checktoken = (req, res) => {
+  try {
+    const userData = req.user;
+    res.status(200).json({
+      status: "Success",
+      data: userData,
+    });
+  } catch (error) {
+    next(new ApiError(err.message, 500));
+  }
+};
+
 module.exports = {
   register,
   login,
+  checktoken,
 };
