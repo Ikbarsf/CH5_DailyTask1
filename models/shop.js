@@ -9,12 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // Shop.belongsToMany(models.User, {
-      //   foreignKey: {
-      //     name: "useId",
-      //     allowNull: false,
-      //   },
-      // });
+      Shop.hasMany(models.Product, {
+        foreignKey: {
+          name: "productId",
+          allowNull: false,
+        },
+      });
+      Shop.belongsTo(models.User, {
+        foreignKey: {
+          name: "useId",
+          allowNull: false,
+        },
+      });
     }
   }
   Shop.init(

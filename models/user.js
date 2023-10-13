@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
       });
+
       User.hasMany(models.Shop, {
         foreignKey: {
           name: "userId",
