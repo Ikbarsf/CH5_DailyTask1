@@ -23,3 +23,5 @@ module.exports = async (req, res, next) => {
     next(new ApiError(err.message, 500));
   }
 };
+
+module.exports = authenticate;

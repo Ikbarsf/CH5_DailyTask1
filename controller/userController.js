@@ -35,35 +35,37 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-const createUser = async (req, res, next) => {
-  const { name, age, address } = req.body;
+// const createUser = async (req, res, next) => {
+//   const { name, age, address } = req.body;
 
-  try {
-    const newUser = await User.create({
-      name,
-      age,
-      address,
-    });
+//   try {
+//     const newUser = await User.create({
+//       name,
+//       age,
+//       address,
+//     });
 
-    res.status(200).json({
-      status: "Success",
-      data: {
-        newUser,
-      },
-    });
-  } catch (err) {
-    next(new ApiError(err.message, 400));
-  }
-};
+//     res.status(200).json({
+//       status: "Success",
+//       data: {
+//         newUser,
+//       },
+//     });
+//   } catch (err) {
+//     next(new ApiError(err.message, 400));
+//   }
+// };
 
 const editUser = async (req, res, next) => {
-  const { name, age, address } = req.body;
+  const { name, age, role, address, shopId } = req.body;
   try {
-    const user = await User.update(
+    await User.update(
       {
         name,
         age,
+        role,
         address,
+        shopId,
       },
       {
         where: {
@@ -82,7 +84,6 @@ const editUser = async (req, res, next) => {
 };
 
 const removeUser = async (req, res, next) => {
-  const { name, age, address } = req.body;
   try {
     const user = await User.findOne({
       where: {
@@ -102,7 +103,7 @@ const removeUser = async (req, res, next) => {
 
     res.status(200).json({
       status: "Success",
-      message: "sukses delete produk",
+      message: "sukses delete user",
     });
   } catch (err) {
     next(new ApiError(err.message, 400));

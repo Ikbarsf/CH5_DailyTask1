@@ -33,10 +33,13 @@ const register = async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, saltRounds);
     const hashedConfirmPassword = bcrypt.hashSync(confirmPassword, saltRounds);
 
+    console.log(req.user.shopId);
+
     const newUser = await User.create({
       name,
       address,
       age,
+      shopId: req.user.shopId,
     });
     const test = await Auth.create({
       email,

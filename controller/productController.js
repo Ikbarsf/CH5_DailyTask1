@@ -21,6 +21,13 @@ const createProduct = async (req, res, next) => {
       img = uploadedImage.url;
     }
 
+    if (price || stock != null) {
+      res.status(400).json({
+        status: "Failed",
+        message: "Price dan Stock tidak boleh kosong",
+      });
+    }
+
     const newProduct = await Product.create({
       name,
       price,

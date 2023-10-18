@@ -1,10 +1,10 @@
 const router = require("express").Router();
 
 const Auth = require("../controller/authController");
-const token = require("../middlewares/checkToken");
+const Token = require("../middlewares/checkToken");
 
-router.post("/register", Auth.register);
+router.post("/register", Token, Auth.register);
 router.post("/login", Auth.login);
-router.get("/token", token, Auth.checktoken);
+router.get("/token", Token, Auth.checktoken);
 
 module.exports = router;

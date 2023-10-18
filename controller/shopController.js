@@ -36,28 +36,27 @@ const getShopById = async (req, res, next) => {
 };
 
 const createShop = async (req, res, next) => {
-  const { name } = req.body;
-
   try {
+    const { name } = req.body;
     const newShop = await Shop.create({
       name,
     });
 
-    res.status(200).json({
+    res.status(201).json({
       status: "Success",
       data: {
         newShop,
       },
     });
   } catch (err) {
-    next(new ApiError(err.message, 400));
+    next(new ApiError(err.message, 500));
   }
 };
 
 const editShop = async (req, res, next) => {
   const { name } = req.body;
   try {
-    const shop = await Shop.update(
+    await Shop.update(
       {
         name,
       },
@@ -70,7 +69,7 @@ const editShop = async (req, res, next) => {
 
     res.status(200).json({
       status: "Success",
-      message: "sukses update user",
+      message: "sukses update shop",
     });
   } catch (err) {
     next(new ApiError(err.message, 400));
@@ -86,7 +85,7 @@ const removeShop = async (req, res, next) => {
     });
 
     if (!shop) {
-      next(new ApiError("User id tersebut gak ada", 404));
+      next(new ApiError("Shop id tersebut gak ada", 404));
     }
 
     await Shop.destroy({
@@ -97,7 +96,7 @@ const removeShop = async (req, res, next) => {
 
     res.status(200).json({
       status: "Success",
-      message: "sukses delete produk",
+      message: "sukses delete shop",
     });
   } catch (err) {
     next(new ApiError(err.message, 400));
